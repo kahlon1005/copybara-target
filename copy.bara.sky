@@ -1,0 +1,25 @@
+sourceUrl = "https://github.com/kahlon1005/copybara-source.git"
+destinationUrl = "https://github.com/kahlon1005/copybara-target.git"
+
+core.workflow(
+    name = "default",
+    origin = git.origin(
+        url = sourceUrl,
+        ref = "master",
+    ),
+    destination = git.destination(
+        url = destinationUrl,
+        fetch = "master",
+        push = "master",
+    ),
+    destination_files = glob([""]),
+    authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),
+    transformations = [
+    	core.replace(
+    	before = "",
+    	after = "",
+    	regex_groups = {},
+		),
+        ##core.move("", "external"),
+    ],
+)
