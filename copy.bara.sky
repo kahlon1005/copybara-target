@@ -19,7 +19,7 @@ core.workflow(
 	authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),    
     transformations = [
         core.replace(
-            before = "",  # Files inside 'external'
+            before = "external/**",  # Files inside 'external'
             after = "",  # Your replacement content here
             regex_groups = {},  # Optional regex groups if you need them
         )
