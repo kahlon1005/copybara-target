@@ -18,7 +18,7 @@ core.workflow(
     destination_files = glob(["**"]),
 	authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),    
     transformations = [		
-		core.move("external", ""),
+		core.move("external", "", glob(["**"]),True),
 		
     ],
 )
