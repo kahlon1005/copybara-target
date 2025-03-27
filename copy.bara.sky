@@ -17,12 +17,8 @@ core.workflow(
     ),
     destination_files = glob(["**"]),
 	authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),    
-    transformations = [
-        core.replace(
-            before = "external/**",  # Files inside 'external'
-            after = "",  # Your replacement content here
-            regex_groups = {},  # Optional regex groups if you need them
-        )
+    transformations = [		
+		core.move("external", ""),
 		
     ],
 )
