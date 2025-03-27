@@ -6,20 +6,24 @@ core.workflow(
     origin = git.origin(
         url = sourceUrl,
         ref = "master",
-    ),
-    destination = git.destination(
+    ),    
+	destination = git.github_pr_destination(
         url = destinationUrl,
-        fetch = "master",
-        push = "master",
+        destination_ref = "master",
+        pr_branch = "from_public_repo",
+        title = "pr from external public repo",
+        body = "this is a sample pull request",
+        integrates = [],
     ),
-    destination_files = glob([""]),
-    authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),
+    destination_files = glob(["**"]),
+	authoring = authoring.pass_thru("Copybara <kahlon1005@gmail.com>"),    
     transformations = [
-    	core.replace(
-    	before = "",
-    	after = "",
-    	regex_groups = {},
-		),
-        ##core.move("", "external"),
+        core.replace(
+            before = "",  # Files inside 'external'
+            after = "",  # Your replacement content here
+            regex_groups = {},  # Optional regex groups if you need them
+        )
+		
     ],
 )
+
