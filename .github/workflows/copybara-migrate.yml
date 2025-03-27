@@ -1,0 +1,46 @@
+name: Copybara Migration Workflow
+
+on:
+  push:
+    branches:
+      - master  # Trigger the workflow on pushes to the master branch
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest  # Using Ubuntu as the base image
+
+    steps:
+    - name: Checkout the source repository
+      uses: actions/checkout@v2
+      with:
+        repository: "kahlon1005/copybara-source"  # Source repository
+        ref: "master"  # Branch to use
+
+    - name: Checkout the destination repository
+      uses: actions/checkout@v2
+      with:
+        repository: "kahlon1005/copybara-target"  # Destination repository
+        ref: "master"  # Branch to use
+
+    - name: Install Java 23 (Eclipse Temurin)
+      uses: actions/setup-java@v2
+      with:
+        java-version: '23'  # Specify the Java version as 23
+        distribution: 'temurin'  # Eclipse Temurin distribution for Java 23
+
+    - name: Download copybara_deploy.jar
+      run: |
+        # Download copybara_deploy.jar from the specified release
+        curl -L https://github.com/google/copybara/releases/download/v20250224/copybara_deploy.jar -o $HOME/copybara_deploy.jar
+
+    - name: Debugging - Print working directory
+      run: |
+        # Print current working directory and list the files to confirm if copy.bara.sky exists
+        echo "Current directory: $GITHUB_WORKSPACE"
+        ls -alh $GITHUB_WORKSPACE  # List files in the root directory
+
+    - name: Run Copybara Migration
+      run: |
+        # Ensure the path to the copy.bara.sky is correct and run the Copybara migration
+        echo "Running Copybara with config file located at: $GITHUB_WORKSPACE/copybara-source/copy.bara.sky"
+        java -jar $HOME/copybara_deploy.jar $GITHUB_WORKSPACE/copy.bara.sky  # Correctly pass the config file
