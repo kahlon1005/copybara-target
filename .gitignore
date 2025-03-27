@@ -1,0 +1,46 @@
+# Maven build directory
+/target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# NetBeans
+nbproject/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Maven wrapper (optional, if you're using it)
+.mvn/
+.mvn/wrapper/
+
+# Logs
+*.log
+
+# Compiled Java class files
+*.class
+
+# Java archives (JARs)
+*.jar
+
+# Generated sources
+generated/
+
+# Build output directory for various tools
+*.war
+*.ear
+
+# Temporary files
+*.swp
+*.swo
+*~
